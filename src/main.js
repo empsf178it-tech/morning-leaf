@@ -127,18 +127,56 @@ function initCustomCursor() {
   });
 }
 
-/* MAIN HEADER */
+/* MAIN HEADER & ACTIVE SECTION TRACKER */
 function initHeader() {
   const header = document.getElementById('main-header');
+  const navLinks = document.querySelectorAll('.desktop-nav .nav-link');
+  const drawerLinks = document.querySelectorAll('.mobile-drawer .drawer-link');
+  const sections = document.querySelectorAll('section[id]');
+
   if (!header) return;
 
-  window.addEventListener('scroll', () => {
+  function updateActiveNav() {
     if (window.scrollY > 60) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
-  });
+
+    let currentSectionId = '';
+    const scrollPosition = window.scrollY + 180;
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+
+    if (currentSectionId) {
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentSectionId}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      drawerLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentSectionId}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 }
 
 /* HERO ENTRANCE */

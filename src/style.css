@@ -431,8 +431,13 @@ button {
   transition: width 0.3s var(--ease-out-expo);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
+}
+
+.nav-link.active {
+  color: var(--color-brass-gold);
 }
 
 .header-actions {
@@ -626,9 +631,16 @@ button {
   padding: 6px 0;
 }
 
-.drawer-link:hover {
+.drawer-link:hover,
+.drawer-link.active {
   color: var(--color-brass-gold);
   transform: translateX(8px);
+}
+
+.drawer-link.active .link-num {
+  opacity: 1;
+  color: var(--color-brass-gold);
+  font-weight: 800;
 }
 
 .link-num {
