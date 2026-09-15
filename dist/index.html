@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MORNING LEAF — Every Morning Has a Story</title>
+  <meta name="description" content="A sophisticated modern South Indian breakfast experience. Built around the emotion, craft and ritual of South Indian breakfast culture.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍃</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="/assets/index-njPTOk2e.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B-4QQoCC.css">
+</head>
+<body class="loading">
+
+  <!-- Preloader Screen -->
+  <div id="preloader" class="preloader-overlay">
+    <div class="preloader-content">
+      <svg class="preloader-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+      </svg>
+      <h1 class="preloader-title">MORNING LEAF</h1>
+      <p class="preloader-tagline">EVERY MORNING HAS A STORY.</p>
+
+      <div class="preloader-progress-box">
+        <div class="preloader-counter"><span id="loader-percent">0</span>%</div>
+        <div class="preloader-track">
+          <div id="loader-bar" class="preloader-fill"></div>
+        </div>
+        <p id="loader-status" class="preloader-status">Selecting rain-fed short-grain rice &amp; urad dal...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+    <span class="cursor-text"></span>
+  </div>
+
+  <!-- Ambient Sound Generator Toggle & Palette -->
+  <div class="soundscape-widget">
+    <button id="sound-toggle" class="sound-toggle" aria-label="Toggle ambient morning soundscape" data-cursor="SOUND">
+      <span class="sound-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path class="wave wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path class="wave wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+      </span>
+      <span class="sound-label">SOUNDSCAPE</span>
+    </button>
+    <div id="soundscape-menu" class="soundscape-menu">
+      <span class="sound-menu-title">SELECT AMBIENCE</span>
+      <button class="sound-opt active" data-type="brown">🌅 Dawn Vapor &amp; Steam</button>
+      <button class="sound-opt" data-type="coffee">☕ Filter Coffee Pour</button>
+      <button class="sound-opt" data-type="tawa">🍳 Hot Tawa Sizzle</button>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header id="main-header" class="main-header">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" data-cursor="HOME">
+        <svg class="brand-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+        </svg>
+        <span class="brand-name">MORNING LEAF</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link">THE MORNING</a></li>
+          <li><a href="#dishes" class="nav-link">DISHES</a></li>
+          <li><a href="#craft" class="nav-link">THE CRAFT</a></li>
+          <li><a href="#plate-builder" class="nav-link">BUILD LEAF</a></li>
+          <li><a href="#coffee" class="nav-link">COFFEE</a></li>
+          <li><a href="#kitchen" class="nav-link">KITCHEN</a></li>
+          <li><a href="#visit" class="nav-link">VISIT</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#visit" class="btn btn-outline magnet-btn open-reserve-modal nav-cta-desktop" data-cursor="RESERVE">
+          <span>RESERVE &rarr;</span>
+        </a>
+        <button class="mobile-toggle magnet-btn" id="mobile-toggle" aria-label="Toggle navigation menu" data-cursor="MENU">
+          <span class="toggle-text">MENU</span>
+          <div class="toggle-bars">
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Full Navigation Overlay & Hamburger Drawer -->
+  <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-backdrop"></div>
+    <div class="drawer-inner">
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+          <span>MORNING LEAF</span>
+        </div>
+        <button id="drawer-close" class="drawer-close" aria-label="Close menu">&times;</button>
+      </div>
+
+      <!-- Drawer VIP CTA Card -->
+      <div class="drawer-cta-wrapper">
+        <div class="drawer-cta-card">
+          <span class="modal-tag">VIP MORNING RITUAL</span>
+          <h4 class="drawer-cta-title">RESERVE YOUR TABLE</h4>
+          <p class="drawer-cta-desc">Hot breakfast &amp; fresh filter coffee prepared to your arrival.</p>
+          <a href="#visit" class="btn btn-primary magnet-btn open-reserve-modal drawer-reserve-btn">
+            <span>RESERVE TABLE NOW &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <ul class="drawer-links">
+        <li><a href="#hero" class="drawer-link"><span class="link-num">01</span> THE MORNING RITUAL</a></li>
+        <li><a href="#dishes" class="drawer-link"><span class="link-num">02</span> THE MORNING TABLE (DISHES)</a></li>
+        <li><a href="#craft" class="drawer-link"><span class="link-num">03</span> CULINARY DOCUMENTARY (THE CRAFT)</a></li>
+        <li><a href="#plate-builder" class="drawer-link"><span class="link-num">04</span> BUILD BANANA LEAF PLATE</a></li>
+        <li><a href="#coffee" class="drawer-link"><span class="link-num">05</span> FILTER COFFEE RITUAL</a></li>
+        <li><a href="#kitchen" class="drawer-link"><span class="link-num">06</span> BEHIND THE TAWA (KITCHEN)</a></li>
+        <li><a href="#menu" class="drawer-link"><span class="link-num">07</span> OUR SELECTION (MENU)</a></li>
+        <li><a href="#people" class="drawer-link"><span class="link-num">08</span> PEOPLE &amp; ARTISANS</a></li>
+        <li><a href="#visit" class="drawer-link"><span class="link-num">09</span> VISIT MORNING LEAF</a></li>
+      </ul>
+
+      <div class="drawer-footer">
+        <p class="tagline">&ldquo;Every Morning Has a Story.&rdquo;</p>
+        <p class="drawer-timing">OPEN DAILY &bull; 06:30 AM &mdash; 12:00 PM</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="content">
+
+    <!-- 01 — HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg-wrapper">
+        <img src="./images/hero_breakfast.jpg" alt="South Indian breakfast spread bathed in morning sunlight" class="hero-bg-img">
+        <canvas id="hero-steam-canvas" class="steam-canvas"></canvas>
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-container">
+        <div class="hero-content">
+          <p class="hero-tagline-small reveal-item">SOUTH INDIAN BREAKFAST RITUAL</p>
+          <h1 class="hero-title reveal-item">
+            <span>EVERY MORNING</span>
+            <span>HAS A STORY.</span>
+          </h1>
+          <p class="hero-subtext reveal-item">
+            Slow mornings. Hot breakfast. Familiar flavours.
+          </p>
+          <div class="hero-cta-group reveal-item">
+            <a href="#dishes" class="btn btn-primary magnet-btn" data-cursor="DISCOVER">
+              <span>DISCOVER THE MORNING &rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Morning Timeline Bar -->
+        <div class="morning-timeline-bar reveal-item">
+          <div class="timeline-node active clickable-time" data-time="04:30 AM" data-title="Stone Grinding Batter" data-desc="Heavy granite stones begin humming to create silky white idli batter."><span>04:30 AM</span> Stone Grind</div>
+          <div class="timeline-line"></div>
+          <div class="timeline-node active clickable-time" data-time="05:30 AM" data-title="Steam Vapor Rising" data-desc="Steamer plates loaded with fresh batter enter the intense 12-minute steam vapor cycle."><span>05:30 AM</span> Steam Idli</div>
+          <div class="timeline-line"></div>
+          <div class="timeline-node active clickable-time" data-time="06:30 AM" data-title="Cast Iron Tawa Fire" data-desc="Chef spreads thin concentric batter circles on sizzling 400°F cast iron tawa."><span>06:30 AM</span> Tawa Fire</div>
+          <div class="timeline-line"></div>
+          <div class="timeline-node highlight clickable-time" data-time="08:42 AM" data-title="Filter Coffee Pour" data-desc="Chicory-blended decoction aerated high between brass tumbler &amp; davara."><span>08:42 AM</span> Coffee Ritual</div>
+        </div>
+
+        <div class="hero-scroll-indicator reveal-item">
+          <span class="scroll-text">SCROLL TO BEGIN</span>
+          <div class="scroll-line">
+            <div class="scroll-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — THE MORNING TABLE -->
+    <section id="dishes" class="section dishes-section">
+      <div class="section-header container">
+        <p class="section-subtitle">THE MORNING TABLE</p>
+        <h2 class="section-title">Five familiar favourites.<br>One unforgettable beginning.</h2>
+      </div>
+
+      <div class="dishes-gallery-wrapper">
+        <div class="dishes-track" id="dishes-track">
+
+          <!-- Dish 01 -->
+          <article class="dish-card" data-cursor="EXPLORE" data-dish-id="idli">
+            <div class="dish-img-box">
+              <img src="./images/idli.jpg" alt="Soft white steamed Idlis on a banana leaf" loading="lazy">
+              <span class="dish-number">01</span>
+            </div>
+            <div class="dish-info">
+              <h3 class="dish-name">IDLI</h3>
+              <p class="dish-desc">&ldquo;Soft, warm and quietly comforting.&rdquo;</p>
+              <div class="dish-meta">Rice &amp; Dal Ferment &bull; Click to Explore Craft &rarr;</div>
+            </div>
+          </article>
+
+          <!-- Dish 02 -->
+          <article class="dish-card" data-cursor="EXPLORE" data-dish-id="vada">
+            <div class="dish-img-box">
+              <img src="./images/vada.jpg" alt="Golden crispy Medu Vada with chutneys" loading="lazy">
+              <span class="dish-number">02</span>
+            </div>
+            <div class="dish-info">
+              <h3 class="dish-name">MEDU VADA</h3>
+              <p class="dish-desc">&ldquo;Crisp golden crust, soft aromatic heart.&rdquo;</p>
+              <div class="dish-meta">Lentil &amp; Pepper &bull; Click to Explore Craft &rarr;</div>
+            </div>
+          </article>
+
+          <!-- Dish 03 -->
+          <article class="dish-card" data-cursor="EXPLORE" data-dish-id="pongal">
+            <div class="dish-img-box">
+              <img src="./images/pongal.jpg" alt="Creamy Ven Pongal glistening with ghee and cashews" loading="lazy">
+              <span class="dish-number">03</span>
+            </div>
+            <div class="dish-info">
+              <h3 class="dish-name">VEN PONGAL</h3>
+              <p class="dish-desc">&ldquo;Ghee, pepper, cashew harmony.&rdquo;</p>
+              <div class="dish-meta">Pure Cow Ghee &bull; Click to Explore Craft &rarr;</div>
+            </div>
+          </article>
+
+          <!-- Dish 04 -->
+          <article class="dish-card" data-cursor="EXPLORE" data-dish-id="dosa">
+            <div class="dish-img-box">
+              <img src="./images/dosa.jpg" alt="Crispy Masala Dosa rolled on banana leaf" loading="lazy">
+              <span class="dish-number">04</span>
+            </div>
+            <div class="dish-info">
+              <h3 class="dish-name">MASALA DOSA</h3>
+              <p class="dish-desc">&ldquo;Golden crisp paper-thin craft.&rdquo;</p>
+              <div class="dish-meta">Spiced Potato &bull; Click to Explore Craft &rarr;</div>
+            </div>
+          </article>
+
+          <!-- Dish 05 -->
+          <article class="dish-card" data-cursor="EXPLORE" data-dish-id="coffee">
+            <div class="dish-img-box">
+              <img src="./images/coffee.jpg" alt="Hot South Indian Filter Coffee in stainless steel tumbler" loading="lazy">
+              <span class="dish-number">05</span>
+            </div>
+            <div class="dish-info">
+              <h3 class="dish-name">FILTER COFFEE</h3>
+              <p class="dish-desc">&ldquo;The iconic morning foam ritual.&rdquo;</p>
+              <div class="dish-meta">Chicory Brew &bull; Click to Explore Craft &rarr;</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — CRAFT & TIME DOCUMENTARY TIMELINE -->
+    <section id="craft" class="section craft-section dark-craft-theme">
+      <div class="container text-center craft-header-box">
+        <p class="section-subtitle gold-subtitle">CULINARY DOCUMENTARY</p>
+        <h2 class="section-title light-title">GOOD FOOD TAKES ITS TIME.</h2>
+        <p class="craft-intro-copy dark-subcopy">
+          From rain-fed rice fields to stone-ground batter, our process honours the slow, gentle transformation of simple natural ingredients.
+        </p>
+      </div>
+
+      <div class="container">
+        <!-- Horizontal Timeline Step Bar Header -->
+        <div class="horizontal-craft-bar">
+          <div class="hz-timeline-line">
+            <div id="hz-progress-fill" class="hz-progress-fill"></div>
+          </div>
+
+          <div class="hz-steps-nodes">
+            <div class="hz-node active" data-step="1">
+              <span class="hz-num">01</span>
+              <span class="hz-label">RICE &amp; DAL</span>
+            </div>
+            <div class="hz-node" data-step="2">
+              <span class="hz-num">02</span>
+              <span class="hz-label">SOAKING</span>
+            </div>
+            <div class="hz-node" data-step="3">
+              <span class="hz-num">03</span>
+              <span class="hz-label">STONE GRIND</span>
+            </div>
+            <div class="hz-node" data-step="4">
+              <span class="hz-num">04</span>
+              <span class="hz-label">FERMENT</span>
+            </div>
+            <div class="hz-node" data-step="5">
+              <span class="hz-num">05</span>
+              <span class="hz-label">STEAM</span>
+            </div>
+            <div class="hz-node" data-step="6">
+              <span class="hz-num">06</span>
+              <span class="hz-label">SERVED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1-Card-At-A-Time Cinematic Stage Showcase -->
+        <div class="single-card-showcase">
+          
+          <button id="craft-prev-btn" class="craft-nav-btn prev-btn" aria-label="Previous craft step" data-cursor="PREV">&larr;</button>
+          
+          <div class="single-card-stage">
+            <!-- ONLY ONE CARD VISIBLE AT A TIME -->
+            <div id="craft-active-card" class="single-craft-card dark-card clickable-time" data-cursor="DOCUMENTARY" data-time="04:30 AM" data-title="01 / 06 — RICE &amp; DAL SOAKING" data-desc="Selecting short-grain parboiled rice and pristine white urad dal. Six slow hours of soaking in mountain spring water to activate natural starches and absorb moisture.">
+              
+              <div class="single-card-img-col">
+                <img id="single-card-img" src="./images/rice_soak.jpg" alt="Craft step photograph">
+                <span id="single-step-badge" class="doc-step-badge">01 / 06</span>
+                <span id="single-time-badge" class="doc-time-badge">04:30 AM</span>
+              </div>
+
+              <div class="single-card-text-col">
+                <span id="single-card-tag" class="modal-tag">CHAPTER ONE &bull; FOUNDATION</span>
+                <h3 id="single-card-title" class="doc-card-title">RICE &amp; DAL SOAKING</h3>
+                <p id="single-card-quote" class="doc-card-quote">&ldquo;Washed in cold mountain spring water.&rdquo;</p>
+                <div class="modal-divider"></div>
+                <p id="single-card-desc" class="doc-card-desc">Selecting short-grain parboiled rice and pristine white urad dal. Six slow hours of soaking in mountain spring water to activate natural starches and absorb moisture.</p>
+                
+                <div class="single-card-action">
+                  <span class="btn btn-outline magnet-btn">EXPLORE FULL STORY &rarr;</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button id="craft-next-btn" class="craft-nav-btn next-btn" aria-label="Next craft step" data-cursor="NEXT">&rarr;</button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03B — BUILD YOUR BANANA LEAF PLATE -->
+    <section id="plate-builder" class="section plate-builder-section">
+      <div class="container text-center">
+        <p class="section-subtitle">INTERACTIVE RITUAL</p>
+        <h2 class="section-title">BUILD YOUR BANANA LEAF PLATE</h2>
+        <p class="builder-intro">Click items below to curate your ideal South Indian breakfast spread on a fresh virtual banana leaf.</p>
+      </div>
+
+      <div class="container builder-workspace">
+        <div class="builder-palette">
+          <h3>ADD TO LEAF</h3>
+          <div class="item-buttons">
+            <button class="add-item-btn" data-item="idli">
+              <span class="icon">⚪</span> <span>Steamed Idli</span>
+            </button>
+            <button class="add-item-btn" data-item="vada">
+              <span class="icon">🍩</span> <span>Medu Vada</span>
+            </button>
+            <button class="add-item-btn" data-item="dosa">
+              <span class="icon">🌯</span> <span>Masala Dosa</span>
+            </button>
+            <button class="add-item-btn" data-item="pongal">
+              <span class="icon">🍲</span> <span>Ven Pongal</span>
+            </button>
+            <button class="add-item-btn" data-item="chutney">
+              <span class="icon">🥣</span> <span>Coconut Chutney</span>
+            </button>
+            <button class="add-item-btn" data-item="sambar">
+              <span class="icon">🥘</span> <span>Spiced Sambar</span>
+            </button>
+            <button class="add-item-btn" data-item="coffee">
+              <span class="icon">☕</span> <span>Filter Coffee</span>
+            </button>
+          </div>
+          <button id="reset-leaf" class="btn btn-outline btn-small">RESET LEAF</button>
+        </div>
+
+        <div class="leaf-canvas-box">
+          <div class="banana-leaf-bg">
+            <div id="leaf-items-container" class="leaf-items-container">
+              <p id="empty-leaf-msg" class="empty-msg">Select items on the left to place them on your banana leaf</p>
+            </div>
+          </div>
+
+          <div class="leaf-sensory-score">
+            <div class="score-card">
+              <span class="score-label">COMFORT RATING</span>
+              <span id="comfort-score" class="score-val">0%</span>
+            </div>
+            <div class="score-card">
+              <span class="score-label">CRISPINESS HARMONY</span>
+              <span id="crisp-score" class="score-val">0%</span>
+            </div>
+            <div class="score-card">
+              <span class="score-label">MORNING JOY</span>
+              <span id="joy-score" class="score-val">QUIET</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — SIGNATURE DISH -->
+    <section id="signature" class="signature-section" data-cursor="MASALA DOSA">
+      <div class="signature-bg-box">
+        <img src="./images/dosa.jpg" alt="Giant crisp Masala Dosa" class="signature-bg-img">
+        <div class="signature-overlay"></div>
+      </div>
+
+      <div class="signature-container container">
+        <div class="signature-text-box">
+          <p class="signature-tagline">THE SIGNATURE CRAFT</p>
+          <h2 class="signature-title">
+            CRISP.<br>
+            WARM.<br>
+            FRESH.
+          </h2>
+          <p class="signature-sub">“Made to be broken. Made to be shared.”</p>
+        </div>
+
+        <!-- Floating Ingredient Callouts (Clickable Popups!) -->
+        <div class="ingredient-callouts">
+          <div class="callout-node callout-1 clickable-node" data-title="Gold Crust Lattice" data-desc="Crafted on seasoned 400°F cast iron tawa using pure ghee for delicate crispy roast texture.">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <h4>Crust &amp; Roast</h4>
+              <p>Gold lattice texture crafted on cast iron</p>
+            </div>
+          </div>
+
+          <div class="callout-node callout-2 clickable-node" data-title="Aromatic Potato Masala" data-desc="Yukon gold potatoes tempered with mustard seeds, turmeric, green chillies &amp; fresh ginger.">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <h4>Potato Masala</h4>
+              <p>Tempered with mustard, turmeric &amp; ginger</p>
+            </div>
+          </div>
+
+          <div class="callout-node callout-3 clickable-node" data-title="Stone-Ground Chutney" data-desc="Freshly grated coconut ground with roasted chana dal, green chilli, and mustard tempering.">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <h4>Coconut Chutney</h4>
+              <p>Stone-ground fresh coconut &amp; green chillies</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — PONGAL MOMENT -->
+    <section id="pongal" class="section pongal-section">
+      <div class="container grid-split">
+        <div class="split-image-column" data-cursor="PONGAL">
+          <div class="pongal-img-box">
+            <img src="./images/pongal.jpg" alt="Rich Ven Pongal with fried cashews" loading="lazy">
+          </div>
+        </div>
+
+        <div class="split-text-column">
+          <p class="section-subtitle">A MORNING EMBRACE</p>
+          <h2 class="section-title">COMFORT, SERVED HOT.</h2>
+          <p class="split-body-copy">
+            &ldquo;Soft rice. Pepper. Ghee. Cashews. Curry leaves. A bowl that feels like home.&rdquo;
+          </p>
+
+          <div class="ingredient-pills">
+            <span class="pill-badge clickable-ingredient" data-parallax="0.2" data-cursor="EXPLORE" data-ingredient="rice">🌾 RICE &bull; Click Story</span>
+            <span class="pill-badge clickable-ingredient" data-parallax="0.4" data-cursor="EXPLORE" data-ingredient="pepper">🌶️ PEPPER &bull; Click Story</span>
+            <span class="pill-badge clickable-ingredient" data-parallax="0.1" data-cursor="EXPLORE" data-ingredient="ghee">🧈 GHEE &bull; Click Story</span>
+            <span class="pill-badge clickable-ingredient" data-parallax="0.3" data-cursor="EXPLORE" data-ingredient="cashew">🥜 CASHEW &bull; Click Story</span>
+            <span class="pill-badge clickable-ingredient" data-parallax="0.5" data-cursor="EXPLORE" data-ingredient="curry">🍃 CURRY LEAF &bull; Click Story</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — AND THEN, COFFEE. WITH INTERACTIVE BREW CALCULATOR -->
+    <section id="coffee" class="coffee-section" data-cursor="COFFEE">
+      <div class="coffee-bg-wrapper">
+        <img src="./images/coffee.jpg" alt="Filter coffee poured in stainless steel tumbler" class="coffee-bg-img">
+        <canvas id="coffee-steam-canvas" class="steam-canvas"></canvas>
+        <div class="coffee-overlay"></div>
+      </div>
+
+      <div class="coffee-container container">
+        <div class="coffee-content-box text-center">
+          <p class="coffee-timestamp">FILTER COFFEE &middot; 08:42 AM</p>
+          <h2 class="coffee-title">
+            AND THEN,<br>COFFEE.
+          </h2>
+          <p class="coffee-sub">&ldquo;The final ritual of the morning.&rdquo;</p>
+          
+          <!-- Interactive Brew Calculator Widget -->
+          <div class="brew-calculator-box">
+            <h3 class="brew-calc-title">BREW YOUR RITUAL</h3>
+            <div class="brew-preset-selector">
+              <button class="brew-preset-btn active" data-preset="madras">Madras Strong (70:30 Chicory)</button>
+              <button class="brew-preset-btn" data-preset="mysore">Mysore Classic (80:20 Chicory)</button>
+              <button class="brew-preset-btn" data-preset="velvet">Velvet Silk (No Chicory)</button>
+            </div>
+
+            <div class="brew-stats-grid">
+              <div class="brew-stat">
+                <span class="stat-label">DECOCTION RATIO</span>
+                <span id="stat-ratio" class="stat-value">60% First Drip</span>
+              </div>
+              <div class="brew-stat">
+                <span class="stat-label">MILK TEMP</span>
+                <span id="stat-temp" class="stat-value">92&deg;C Scalded</span>
+              </div>
+              <div class="brew-stat">
+                <span class="stat-label">FOAM HEIGHT</span>
+                <span id="stat-foam" class="stat-value">3.5 cm Crown</span>
+              </div>
+            </div>
+
+            <button id="trigger-brew-anim" class="btn btn-primary magnet-btn">
+              <span>BREW NOW &rarr;</span>
+            </button>
+
+            <!-- Brew Liquid Fill Visual -->
+            <div id="brew-liquid-fill" class="brew-liquid-fill">
+              <div class="liquid-wave"></div>
+              <span id="brew-fill-status">SELECT BLEND ABOVE</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 — THE KITCHEN (ALL CARDS CLICKABLE FOR DOCUMENTARY POPUPS!) -->
+    <section id="kitchen" class="section kitchen-section">
+      <div class="container section-header">
+        <p class="section-subtitle">BEHIND THE SCENES</p>
+        <h2 class="section-title">BEHIND EVERY PLATE<br>IS A MORNING IN MOTION.</h2>
+      </div>
+
+      <div class="kitchen-gallery-grid container">
+        <!-- Card 1 -->
+        <div class="kitchen-card card-large clickable-kitchen" data-cursor="EXPLORE" data-kitchen-id="tawa">
+          <img src="./images/tawa.jpg" alt="Cook preparing dosa on hot tawa" loading="lazy">
+          <div class="kitchen-label">THE TAWA &bull; Click Story &rarr;</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="kitchen-card clickable-kitchen" data-cursor="EXPLORE" data-kitchen-id="steam">
+          <img src="./images/steam.jpg" alt="Steamer lid lifted with rising steam" loading="lazy">
+          <div class="kitchen-label">THE STEAMER &bull; Click Story &rarr;</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="kitchen-card clickable-kitchen" data-cursor="EXPLORE" data-kitchen-id="chutney">
+          <img src="./images/hands.jpg" alt="Cook spooning coconut chutney on banana leaf" loading="lazy">
+          <div class="kitchen-label">THE CHUTNEY &bull; Click Story &rarr;</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="kitchen-card clickable-kitchen" data-cursor="EXPLORE" data-kitchen-id="coffee">
+          <img src="./images/coffee.jpg" alt="Filter coffee pouring" loading="lazy">
+          <div class="kitchen-label">THE COFFEE &bull; Click Story &rarr;</div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="kitchen-card clickable-kitchen" data-cursor="EXPLORE" data-kitchen-id="stone">
+          <img src="./images/stone_grind.jpg" alt="Traditional granite stone wet mill batter grinding" loading="lazy">
+          <div class="kitchen-label">THE STONE GRIND &bull; Click Story &rarr;</div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="kitchen-card card-wide clickable-kitchen" data-cursor="EXPLORE" data-kitchen-id="crew">
+          <img src="./images/hero_breakfast.jpg" alt="Morning crew breakfast table" loading="lazy">
+          <div class="kitchen-label">THE MORNING CREW &bull; Click Story &rarr;</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 — THE MORNING MENU -->
+    <section id="menu" class="section menu-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <p class="section-subtitle">OUR SELECTION</p>
+          <h2 class="section-title">WHAT'S ON THE TABLE</h2>
+        </div>
+
+        <div class="menu-list-wrapper">
+          <ul class="menu-items-list">
+
+            <li class="menu-item" data-img="./images/idli.jpg" data-title="IDLI" data-dish-id="idli">
+              <div class="menu-item-head">
+                <h3 class="menu-dish-title">IDLI</h3>
+                <span class="menu-line"></span>
+                <span class="menu-tag">CLASSIC STEAM &bull; CLICK CRAFT &rarr;</span>
+              </div>
+              <p class="menu-dish-desc">Soft steamed rice cakes &bull; Sambar &bull; Coconut Chutney</p>
+            </li>
+
+            <li class="menu-item" data-img="./images/vada.jpg" data-title="MEDU VADA" data-dish-id="vada">
+              <div class="menu-item-head">
+                <h3 class="menu-dish-title">MEDU VADA</h3>
+                <span class="menu-line"></span>
+                <span class="menu-tag">GOLDEN ROAST &bull; CLICK CRAFT &rarr;</span>
+              </div>
+              <p class="menu-dish-desc">Crisp outside, soft inside &bull; Sambar &bull; Coconut Chutney</p>
+            </li>
+
+            <li class="menu-item" data-img="./images/dosa.jpg" data-title="MASALA DOSA" data-dish-id="dosa">
+              <div class="menu-item-head">
+                <h3 class="menu-dish-title">MASALA DOSA</h3>
+                <span class="menu-line"></span>
+                <span class="menu-tag">TAWA SIGNATURE &bull; CLICK CRAFT &rarr;</span>
+              </div>
+              <p class="menu-dish-desc">Golden dosa with potato masala &bull; Sambar &bull; Chutney</p>
+            </li>
+
+            <li class="menu-item" data-img="./images/pongal.jpg" data-title="VEN PONGAL" data-dish-id="pongal">
+              <div class="menu-item-head">
+                <h3 class="menu-dish-title">VEN PONGAL</h3>
+                <span class="menu-line"></span>
+                <span class="menu-tag">PURE GHEE &bull; CLICK CRAFT &rarr;</span>
+              </div>
+              <p class="menu-dish-desc">Rice &bull; Pepper &bull; Ghee &bull; Cashew</p>
+            </li>
+
+            <li class="menu-item" data-img="./images/coffee.jpg" data-title="FILTER COFFEE" data-dish-id="coffee">
+              <div class="menu-item-head">
+                <h3 class="menu-dish-title">FILTER COFFEE</h3>
+                <span class="menu-line"></span>
+                <span class="menu-tag">MYSORE BLEND &bull; CLICK CRAFT &rarr;</span>
+              </div>
+              <p class="menu-dish-desc">Freshly brewed South Indian filter coffee &bull; Stainless Davara</p>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <!-- Floating Menu Preview Box -->
+      <div id="menu-preview-modal" class="menu-preview-modal">
+        <img id="menu-preview-img" src="./images/idli.jpg" alt="Menu preview">
+        <span id="menu-preview-title">IDLI</span>
+      </div>
+    </section>
+
+    <!-- 09 — THE PEOPLE -->
+    <section id="people" class="section people-section">
+      <div class="container grid-split align-center">
+        <div class="split-text-column">
+          <p class="section-subtitle">THE HUMAN TOUCH</p>
+          <h2 class="section-title">MADE BY HAND.<br>SERVED WITH HEART.</h2>
+          <p class="split-body-copy">
+            &ldquo;Because the best mornings are never made by machines alone.&rdquo;
+          </p>
+          <p class="people-story-text">
+            Every morning at 4:30 AM, our quiet kitchen comes alive. Fingers measure spices by intuition, granite stones hum, and steamer lids billow warm vapor into the dawn air.
+          </p>
+        </div>
+
+        <div class="split-image-column">
+          <div class="people-grid-frame">
+            <img src="./images/hands.jpg" alt="Cook spooning coconut chutney on banana leaf" class="people-img-1" loading="lazy">
+            <img src="./images/tawa.jpg" alt="Dosa batter swirled on tawa" class="people-img-2" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 — FINAL CINEMATIC MOMENT -->
+    <section id="visit" class="final-hero-section" data-cursor="MORNING">
+      <div class="final-bg-wrapper">
+        <img src="./images/final_spread.jpg" alt="Complete South Indian breakfast table spread in morning sunlight" class="final-bg-img">
+        <div class="final-overlay"></div>
+      </div>
+
+      <div class="final-container container text-center">
+        <p class="final-sub">YOUR TABLE IS WAITING</p>
+        <h2 class="final-title">
+          COME HUNGRY.<br>
+          LEAVE WITH A STORY.
+        </h2>
+        
+        <div class="final-cta-group">
+          <a href="#hero" class="btn btn-primary magnet-btn" data-cursor="EXPLORE">
+            <span>VISIT MORNING LEAF &rarr;</span>
+          </a>
+          <a href="#dishes" class="btn btn-secondary magnet-btn" data-cursor="DISHES">
+            <span>DISCOVER THE MORNING &darr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GENERAL UNIVERSAL POPUP MODAL -->
+  <div id="universal-modal" class="dish-detail-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content-card">
+      <button id="univ-close-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-grid">
+        <div class="modal-img-col">
+          <img id="univ-img" src="./images/tawa.jpg" alt="Popup detail image">
+        </div>
+        <div class="modal-text-col">
+          <span id="univ-tag" class="modal-tag">MORNING STORY</span>
+          <h2 id="univ-title" class="modal-title">THE TAWA</h2>
+          <p id="univ-sub" class="modal-sub">&ldquo;Seasoned cast iron in motion.&rdquo;</p>
+          <div class="modal-divider"></div>
+          <p id="univ-desc" class="modal-story">
+            Our cast iron tawa plates are seasoned over decades with pure cow ghee. Maintained at a steady 400°F to guarantee a crisp golden lattice roast on every paper-thin dosa.
+          </p>
+          
+          <div class="modal-pairing-box">
+            <span>ARTISANAL INSIGHT</span>
+            <p id="univ-insight">Hand-swirled concentric circles created with a traditional stainless steel cup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISH CRAFT DETAIL MODAL OVERLAY -->
+  <div id="dish-detail-modal" class="dish-detail-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content-card">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-grid">
+        <div class="modal-img-col">
+          <img id="modal-dish-img" src="./images/idli.jpg" alt="Dish detail image">
+        </div>
+        <div class="modal-text-col">
+          <span id="modal-dish-tag" class="modal-tag">ARTISANAL RITUAL</span>
+          <h2 id="modal-dish-title" class="modal-title">IDLI</h2>
+          <p id="modal-dish-sub" class="modal-sub">&ldquo;Soft, warm and quietly comforting.&rdquo;</p>
+          <div class="modal-divider"></div>
+          <p id="modal-dish-story" class="modal-story">
+            Soaked for 6 hours in mountain spring water, stone-ground in traditional granite wet mills, and fermented naturally overnight under brass covers.
+          </p>
+          
+          <div class="flavor-profile-box">
+            <h4>FLAVOR PROFILE</h4>
+            <div class="flavor-bar-item">
+              <span>Textural Airiness</span>
+              <div class="bar-track"><div id="bar-air" class="bar-fill" style="width: 95%"></div></div>
+            </div>
+            <div class="flavor-bar-item">
+              <span>Aromatic Ferment</span>
+              <div class="bar-track"><div id="bar-aroma" class="bar-fill" style="width: 90%"></div></div>
+            </div>
+            <div class="flavor-bar-item">
+              <span>Comfort Warmth</span>
+              <div class="bar-track"><div id="bar-warmth" class="bar-fill" style="width: 100%"></div></div>
+            </div>
+          </div>
+
+          <div class="modal-pairing-box">
+            <span>BEST PAIRED WITH</span>
+            <p id="modal-dish-pairing">Stone-ground Fresh Coconut Chutney &amp; Piping Hot Drumstick Sambar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIP TABLE RESERVATION MODAL -->
+  <div id="reservation-modal" class="dish-detail-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content-card res-modal-card">
+      <button id="res-close-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="res-modal-inner">
+        <div class="res-header">
+          <span class="modal-tag">VIP MORNING RITUAL</span>
+          <h2 class="modal-title">RESERVE YOUR TABLE</h2>
+          <p class="modal-sub">&ldquo;Step into slow morning luxury. Hot breakfast &amp; brass filter coffee awaits.&rdquo;</p>
+        </div>
+
+        <form id="reservation-form" class="res-form">
+          <div class="res-grid">
+            <div class="res-field">
+              <label class="res-label">YOUR NAME</label>
+              <input type="text" id="res-name" class="res-input" placeholder="e.g. Vikram Sundaram" required>
+            </div>
+            <div class="res-field">
+              <label class="res-label">GUEST COUNT</label>
+              <select id="res-guests" class="res-select">
+                <option value="2 Guests">2 Guests (Intimate Table)</option>
+                <option value="4 Guests">4 Guests (Family Courtyard)</option>
+                <option value="6+ Guests">6+ Guests (Royal Feast Table)</option>
+                <option value="1 Guest">1 Guest (Coffee Bar)</option>
+              </select>
+            </div>
+            <div class="res-field">
+              <label class="res-label">ARRIVING TIME</label>
+              <select id="res-time" class="res-select">
+                <option value="06:30 AM">06:30 AM — First Steam</option>
+                <option value="07:30 AM">07:30 AM — Dawn Sunshine</option>
+                <option value="08:30 AM">08:30 AM — Prime Breakfast</option>
+                <option value="09:30 AM">09:30 AM — Filter Coffee Hour</option>
+                <option value="10:30 AM">10:30 AM — Lazy Brunch</option>
+              </select>
+            </div>
+            <div class="res-field">
+              <label class="res-label">SEATING AMBIANCE</label>
+              <select id="res-seat" class="res-select">
+                <option value="Sunlit Banana Leaf Courtyard">Sunlit Banana Leaf Courtyard</option>
+                <option value="Brass Filter Coffee Counter">Brass Filter Coffee Counter</option>
+                <option value="Open Kitchen Tawa View">Open Kitchen Tawa View</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" id="res-submit-btn" class="btn btn-primary magnet-btn res-submit-btn">
+            <span>CONFIRM MORNING RITUAL &rarr;</span>
+          </button>
+        </form>
+
+        <div id="res-success-card" class="res-success-card" style="display: none;">
+          <div class="success-icon">🍃</div>
+          <h3 class="success-title">YOUR TABLE IS RESERVED</h3>
+          <p id="res-success-msg" class="success-sub">We look forward to welcoming you at Morning Leaf.</p>
+          <div class="res-voucher">
+            <span id="res-voucher-ref" class="voucher-ref">REF: #ML-2026-889</span>
+            <p id="res-voucher-details" class="voucher-details">2 Guests &bull; 07:30 AM &bull; Sunlit Courtyard</p>
+          </div>
+          <button id="res-done-btn" class="btn btn-secondary magnet-btn mt-4">
+            <span>RETURN TO STORY &rarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand-box">
+        <a href="#hero" class="footer-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+          <span>MORNING LEAF</span>
+        </a>
+        <p class="footer-tagline">&ldquo;Every Morning Has a Story.&rdquo;</p>
+        <p class="footer-copy-sub">Made for slow mornings and good food.</p>
+      </div>
+
+      <div class="footer-links-box">
+        <div class="footer-nav-col">
+          <h4>THE EXPERIENCE</h4>
+          <ul>
+            <li><a href="#hero">THE MORNING</a></li>
+            <li><a href="#dishes">DISHES</a></li>
+            <li><a href="#craft">THE CRAFT</a></li>
+            <li><a href="#plate-builder">BUILD LEAF PLATE</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>STORY &amp; PEOPLE</h4>
+          <ul>
+            <li><a href="#coffee">COFFEE RITUAL</a></li>
+            <li><a href="#kitchen">BEHIND THE TAWA</a></li>
+            <li><a href="#visit">VISIT US</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>CONNECT</h4>
+          <div class="social-placeholders">
+            <a href="#" class="social-link clickable-journal" data-journal="instagram">INSTAGRAM</a>
+            <a href="#" class="social-link clickable-journal" data-journal="spotify">SPOTIFY PLAYLIST</a>
+            <a href="#" class="social-link clickable-journal" data-journal="journal">MORNING JOURNAL</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>&copy; 2026 MORNING LEAF. All rights reserved. Cinematic South Indian Culinary Craft.</p>
+      <p class="footer-time">OPEN DAILY &bull; 06:30 AM &mdash; 12:00 PM</p>
+    </div>
+  </footer>
+
+</body>
+</html>
