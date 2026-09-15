@@ -90,13 +90,28 @@ function initCustomCursor() {
   const hoverElements = document.querySelectorAll('[data-cursor], a, button, .dish-card, .kitchen-card');
   hoverElements.forEach((el) => {
     el.addEventListener('mouseenter', () => {
-      const label = el.getAttribute('data-cursor') || 'VIEW';
-      cursor.classList.add('active-hover');
-      if (cursorText) cursorText.textContent = label;
+      const cursorAttr = el.getAttribute('data-cursor');
+      const isNavOrTextLink = el.classList.contains('nav-link') || 
+                              el.classList.contains('drawer-link') || 
+                              el.classList.contains('brand-logo') ||
+                              el.closest('.desktop-nav') || 
+                              el.closest('.drawer-links') ||
+                              el.closest('.footer-links') ||
+                              cursorAttr === 'none';
+
+      if (isNavOrTextLink || !cursorAttr) {
+        cursor.classList.add('nav-hover');
+        cursor.classList.remove('active-hover');
+        if (cursorText) cursorText.textContent = '';
+      } else {
+        cursor.classList.add('active-hover');
+        cursor.classList.remove('nav-hover');
+        if (cursorText) cursorText.textContent = cursorAttr;
+      }
     });
 
     el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('active-hover');
+      cursor.classList.remove('active-hover', 'nav-hover');
       if (cursorText) cursorText.textContent = '';
     });
   });
@@ -928,15 +943,23 @@ function initMobileDrawer() {
 
   if (!toggleBtn || !drawer) return;
 
+  function openDrawer() {
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (typeof lenis !== 'undefined' && lenis) {
+      lenis.stop();
+    }
+  }
+
   function closeDrawer() {
     drawer.classList.remove('open');
     document.body.style.overflow = '';
+    if (typeof lenis !== 'undefined' && lenis) {
+      lenis.start();
+    }
   }
 
-  toggleBtn.addEventListener('click', () => {
-    drawer.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
+  toggleBtn.addEventListener('click', openDrawer);
 
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);

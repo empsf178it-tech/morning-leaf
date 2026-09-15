@@ -147,6 +147,21 @@ button {
   opacity: 1;
 }
 
+/* Subtle non-overlapping ring for navbar & text links */
+.custom-cursor.nav-hover {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  background: rgba(200, 164, 82, 0.15);
+  border-color: var(--color-brass-gold);
+  box-shadow: 0 0 20px rgba(200, 164, 82, 0.35);
+  backdrop-filter: blur(2px);
+}
+
+.custom-cursor.nav-hover .cursor-text {
+  opacity: 0;
+}
+
 @media (pointer: coarse) {
   .custom-cursor {
     display: none !important;
@@ -390,6 +405,7 @@ button {
   gap: 10px;
   color: var(--color-white);
   transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
 
 .brand-icon {
@@ -401,12 +417,14 @@ button {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.18em;
+  white-space: nowrap;
 }
 
 .desktop-nav .nav-links {
   display: flex;
   align-items: center;
   gap: 36px;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
@@ -506,7 +524,9 @@ button {
   width: 100%;
   max-width: 520px;
   height: 100vh;
-  background: rgba(22, 17, 14, 0.96);
+  height: 100dvh;
+  max-height: 100dvh;
+  background: rgba(22, 17, 14, 0.98);
   backdrop-filter: blur(24px);
   border-left: 1px solid rgba(200, 164, 82, 0.25);
   z-index: 2005;
@@ -515,6 +535,9 @@ button {
   display: flex;
   flex-direction: column;
   box-shadow: -20px 0 80px rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-drawer.open {
@@ -541,12 +564,14 @@ button {
 }
 
 .drawer-inner {
-  padding: 40px 36px;
-  height: 100%;
+  padding: 32px 28px 48px;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 20px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .drawer-header {
